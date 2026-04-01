@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to SmartText</title>
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+  <div class="onboarding-container">
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+      <span class="step-dot active" data-step="1">1</span>
+      <span class="step-dot" data-step="2">2</span>
+      <span class="step-dot" data-step="3">3</span>
+      <span class="step-dot" data-step="4">4</span>
+      <span class="step-dot" data-step="5">5</span>
+    </div>
+
+    <!-- Step 1: Welcome -->
+    <div class="step active" id="step-1">
+      <div class="step-content">
+        <div class="step-icon">✨</div>
+        <h1>Welcome to SmartText!</h1>
+        <p class="step-description">
+          Type less, accomplish more. SmartText expands your custom shortcuts into full phrases, instantly — anywhere you type on the web.
+        </p>
+        <div class="example-card">
+          <code>sig</code> + <kbd>Space</kbd> → 
+          <span class="expanded">Best regards,<br>{{date}}<br>you@example.com</span>
+        </div>
+      </div>
+      <div class="step-footer">
+        <button class="btn-next" data-next="2">Get Started →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Create Your First Shortcut -->
+    <div class="step" id="step-2">
+      <div class="step-content">
+        <div class="step-icon">🔑</div>
+        <h1>Create Your First Shortcut</h1>
+        <p class="step-description">
+          Click the SmartText icon in your toolbar, then add a shortcut:
+        </p>
+        <ol class="instruction-list">
+          <li>Click <strong>+ Add Shortcut</strong></li>
+          <li>Enter a <strong>key</strong> (e.g., <code>addr</code>)</li>
+          <li>Type your <strong>expanded text</strong></li>
+          <li>Click <strong>Save</strong></li>
+        </ol>
+        <div class="visual-demo">
+          <div class="demo-input">
+            <span class="demo-key">addr</span><span class="demo-cursor">|</span>
+          </div>
+          <div class="demo-arrow">↓</div>
+          <div class="demo-expanded">123 Main St<br>City, State 12345</div>
+        </div>
+      </div>
+      <div class="step-footer">
+        <button class="btn-prev" data-prev="1">← Back</button>
+        <button class="btn-next" data-next="3">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Use Variables -->
+    <div class="step" id="step-3">
+      <div class="step-content">
+        <div class="step-icon">🔄</div>
+        <h1>Smart Variables</h1>
+        <p class="step-description">
+          Make shortcuts dynamic with auto-filling variables:
+        </p>
+        <div class="variables-grid">
+          <div class="variable-item">
+            <code>{"{"}{"{"}date{"}"}{"}"}</code>
+            <span>Current date</span>
+          </div>
+          <div class="variable-item">
+            <code>{"{"}{"{"}time{"}"}{"}"}</code>
+            <span>Current time</span>
+          </div>
+          <div class="variable-item">
+            <code>{"{"}{"{"}email{"}"}{"}"}</code>
+            <span>Your email</span>
+          </div>
+          <div class="variable-item">
+            <code>{"{"}{"{"}cursor{"}"}{"}"}</code>
+            <span>Set cursor position</span>
+          </div>
+        </div>
+        <div class="example-card">
+          <p><strong>Shortcut text:</strong></p>
+          <code>Meeting at {"{"}{"}time{"}"}{"}"} today! {"{"}{"}cursor{"}"}{"}"}</code>
+          <p><strong>Expands to:</strong></p>
+          <span class="expanded">Meeting at 2:30 PM today! |</span>
+        </div>
+      </div>
+      <div class="step-footer">
+        <button class="btn-prev" data-prev="2">← Back</button>
+        <button class="btn-next" data-next="4">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Domain Restrictions -->
+    <div class="step" id="step-4">
+      <div class="step-content">
+        <div class="step-icon">🔒</div>
+        <h1>Domain-Specific Shortcuts</h1>
+        <p class="step-description">
+          Keep work and personal shortcuts separate:
+        </p>
+        <div class="domain-example">
+          <div class="domain-card work">
+            <span class="domain-badge">🔒 work.com</span>
+            <p><code>sig</code> → Professional work signature</p>
+            <small>Only expands on company email</small>
+          </div>
+          <div class="domain-card personal">
+            <span class="domain-badge">🌐 Any site</span>
+            <p><code>home</code> → Personal address</p>
+            <small>Works everywhere</small>
+          </div>
+        </div>
+        <p class="tip">💡 Tip: Enable "Restrict to domains" when creating a shortcut</p>
+      </div>
+      <div class="step-footer">
+        <button class="btn-prev" data-prev="3">← Back</button>
+        <button class="btn-next" data-next="5">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 5: You're Ready! -->
+    <div class="step" id="step-5">
+      <div class="step-content">
+        <div class="step-icon">🎉</div>
+        <h1>You're All Set!</h1>
+        <p class="step-description">
+          SmartText is now active. Start typing your shortcuts anywhere:
+        </p>
+        <div class="works-with">
+          <span class="badge">Gmail</span>
+          <span class="badge">Slack</span>
+          <span class="badge">Google Docs</span>
+          <span class="badge">Notion</span>
+          <span class="badge">GitHub</span>
+          <span class="badge">+ any website</span>
+        </div>
+        <div class="quick-tips">
+          <p><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> — View all shortcuts</p>
+          <p><kbd>Escape</kbd> — Cancel expansion before trigger key</p>
+          <p>Right-click extension → <strong>Options</strong> — Advanced settings</p>
+        </div>
+      </div>
+      <div class="step-footer">
+        <button class="btn-prev" data-prev="4">← Review</button>
+        <button class="btn-finish" id="finish-btn">Start Using SmartText ✨</button>
+      </div>
+    </div>
+
+    <!-- Skip Link -->
+    <button class="skip-btn" id="skip-btn">Skip Tutorial</button>
+  </div>
+
+  <script src="onboarding.js"></script>
+</body>
+</html>
