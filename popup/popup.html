@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartText</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <h1>✨ SmartText</h1>
+    <div class="stats">
+      <div class="stat"><span id="stat-total">0</span><small>Shortcuts</small></div>
+      <div class="stat"><span id="stat-today">0</span><small>Created Today</small></div>
+      <div class="stat"><span id="stat-chars">0</span><small>Chars Saved</small></div>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Search shortcuts...">
+    <button id="add-btn" class="btn-primary">+ Add Shortcut</button>
+  </div>
+
+  <div id="shortcuts-list" class="shortcuts-list"></div>
+
+  <div id="shortcut-form" class="form hidden">
+    <input type="hidden" id="edit-id">
+    <div class="form-group">
+      <label>Shortcut Key</label>
+      <input type="text" id="key-input" maxlength="20" placeholder="e.g., sig" pattern="[a-zA-Z0-9_\-@\.]+">
+      <small>Trigger: type this + Space/Tab</small>
+    </div>
+    <div class="form-group">
+      <label>Expanded Text</label>
+      <textarea id="text-input" rows="5" placeholder="Type your expanded text here..."></textarea>
+      <div class="format-toolbar">
+        <button type="button" data-format="**text**"><b>B</b></button>
+        <button type="button" data-format="*text*"><i>I</i></button>
+        <button type="button" data-format="`code`"><code>Code</code></button>
+        <button type="button" data-format="\n">↵</button>
+        <button type="button" data-var="{{date}}">📅</button>
+        <button type="button" data-var="{{time}}">🕐</button>
+        <button type="button" data-var="{{email}}">✉️</button>
+        <button type="button" data-var="{{cursor}}">📍</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label><input type="checkbox" id="restricted-check"> Restrict to domains</label>
+      <input type="text" id="domains-input" placeholder="example.com, work.example.com" class="hidden">
+    </div>
+    <div class="form-actions">
+      <button type="button" id="cancel-btn" class="btn-secondary">Cancel</button>
+      <button type="button" id="save-btn" class="btn-primary">Save Shortcut</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="#" id="settings-link">⚙️ Settings</a>
+    <a href="#" id="overlay-link">🔍 View All (Alt+Shift+L)</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
