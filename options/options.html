@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartText Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>⚙️ SmartText Settings</h1>
+      <p class="subtitle">Customize your text expansion experience</p>
+    </header>
+
+    <main class="settings-grid">
+      <!-- General Settings -->
+      <section class="card">
+        <h2>General</h2>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label class="setting-label">Enable SmartText</label>
+            <p class="setting-desc">Toggle expansion on/off globally</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="enabled-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label class="setting-label">Case Sensitive Matching</label>
+            <p class="setting-desc">Require exact case match for shortcuts</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="case-sensitive-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label class="setting-label">Show Expansion Animation</label>
+            <p class="setting-desc">Visual feedback when text expands</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="animation-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label class="setting-label">Your Email</label>
+            <p class="setting-desc">Used for {"{"}{"{"}email{"}"}{"}"} variable</p>
+          </div>
+          <input type="email" id="email-input" placeholder="you@example.com" class="text-input">
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label class="setting-label">Trigger Keys</label>
+            <p class="setting-desc">Keys that activate expansion</p>
+          </div>
+          <div class="trigger-keys">
+            <label><input type="checkbox" value=" " checked> Space</label>
+            <label><input type="checkbox" value="Tab" checked> Tab</label>
+            <label><input type="checkbox" value="Enter"> Enter</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Management -->
+      <section class="card">
+        <h2>Data Management</h2>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label class="setting-label">Export Shortcuts</label>
+            <p class="setting-desc">Download your shortcuts as JSON file</p>
+          </div>
+          <button id="export-btn" class="btn-secondary">Export JSON</button>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label class="setting-label">Import Shortcuts</label>
+            <p class="setting-desc">Load shortcuts from a JSON file</p>
+          </div>
+          <div class="import-group">
+            <input type="file" id="import-file" accept=".json" hidden>
+            <button id="import-btn" class="btn-secondary">Choose File</button>
+            <span id="import-filename" class="filename"></span>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label class="setting-label">Reset to Defaults</label>
+            <p class="setting-desc warning">Delete all shortcuts and settings</p>
+          </div>
+          <button id="reset-btn" class="btn-danger">Reset All</button>
+        </div>
+      </section>
+
+      <!-- P2P Sync -->
+      <section class="card">
+        <h2>🔗 P2P Device Sync</h2>
+        <p class="section-intro">Transfer shortcuts between devices securely via WebRTC. No servers, no storage.</p>
+        
+        <div class="sync-tabs">
+          <button class="tab-btn active" data-tab="send">Send Data</button>
+          <button class="tab-btn" data-tab="receive">Receive Data</button>
+        </div>
+
+        <!-- Send Tab -->
+        <div id="send-tab" class="sync-tab active">
+          <div class="sync-step">
+            <span class="step-number">1</span>
+            <p>Click generate to create a secure sync code</p>
+          </div>
+          <button id="generate-qr-btn" class="btn-primary">Generate QR Code</button>
+          
+          <div id="qr-container" class="qr-container hidden">
+            <img id="qr-code" alt="Sync QR Code">
+            <p class="sync-code-label">Or enter this code manually:</p>
+            <code id="sync-code" class="sync-code"></code>
+            <button id="copy-code-btn" class="btn-small">Copy Code</button>
+          </div>
+          
+          <div id="send-status" class="status-message"></div>
+        </div>
+
+        <!-- Receive Tab -->
+        <div id="receive-tab" class="sync-tab">
+          <div class="sync-step">
+            <span class="step-number">1</span>
+            <p>Enter the sync code from your other device</p>
+          </div>
+          
+          <div class="receive-input-group">
+            <input type="text" id="receive-code-input" placeholder="Enter sync code..." class="text-input">
+            <button id="connect-btn" class="btn-primary">Connect</button>
+          </div>
+          
+          <div id="receive-status" class="status-message"></div>
+          
+          <div id="receive-progress" class="progress-container hidden">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="progress-text">Establishing connection...</span>
+          </div>
+        </div>
+        
+        <p class="sync-warning">⚠️ Only sync with devices you trust. Codes expire after use.</p>
+      </section>
+
+      <!-- Keyboard Shortcuts -->
+      <section class="card">
+        <h2>⌨️ Keyboard Shortcuts</h2>
+        <p class="section-intro">Customize extension shortcuts in Chrome settings</p>
+        
+        <div class="shortcut-list">
+          <div class="shortcut-item">
+            <span class="shortcut-action">Open Popup</span>
+            <code class="shortcut-key">Click extension icon</code>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Toggle Overlay</span>
+            <code class="shortcut-key">Alt + Shift + L</code>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Open Settings</span>
+            <code class="shortcut-key">Right-click → Options</code>
+          </div>
+        </div>
+        
+        <a href="chrome://extensions/shortcuts" target="_blank" class="btn-link">
+          Customize in Chrome →
+        </a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>SmartText v<span id="version">2.0.0</span> • <a href="#" id="docs-link">Documentation</a> • <a href="#" id="support-link">Support</a></p>
+    </footer>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>
